@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To-Do List</title>
   <link rel="stylesheet" href="style.css">
-  <title>Todo List</title>
 </head>
 <body>
-  <h1 id="main-heading">Todo List</h1>
+  <div class="container">
+    <h1>📋To-Do List</h1>
+    <div class="input-section">
+      <div class="input-group">
+        <label for="todo-input">📝Add Task</label>
+        <input id="todo-input" type="text" placeholder="Enter your task">
+      </div>
+      <div class="input-group">
+        <label for="todo-date">📅Add Date</label>
+        <input id="todo-date" type="date">
+      </div>
+      <div class="input-group">
+        <label for="todo-time">⏰Add Time</label>
+        <input id="todo-time" type="time">
+      </div>
+      <button class="btn-add" onclick="addTodo()">Add Task</button>
+    </div>
 
-  <div class="grid-container">
-    <input id="todo-input" type="text" placeholder="Enter Todo here">
-    <input id="todo-date" type="date">
-    <button class='btn-todo' onclick="addTodo();">Add</button>
+    <div class="todo-container" id="todo-container">
+      <!-- Tasks will appear here -->
+    </div>
   </div>
-
-  <div class="todo-container grid-container"></div>
 
   <script src="script.js"></script>
 </body>
