@@ -1,38 +1,59 @@
-let todoList = [
-    {
-      item: 'Buy Milk',
-      dueDate: '18/10/2024'
-    },
-    {
-      item: 'Go to College',
-      dueDate: '18/10/2024'
-    }
-  ];
-  
-  displayItems();
-  
-  function addTodo() {
-    let inputElement = document.querySelector('#todo-input');
-    let dateElement = document.querySelector('#todo-date');
-    let todoItem = inputElement.value;
-    let todoDate = dateElement.value;
-    todoList.push({item: todoItem, dueDate: todoDate});
-    inputElement.value = '';
-    dateElement.value = '';
-    displayItems();
+let todoList = [];
+
+function addTodo() {
+  const taskInput = document.getElementById("todo-input");
+  const dateInput = document.getElementById("todo-date");
+  const timeInput = document.getElementById("todo-time");
+
+  const task = taskInput.value.trim();
+  const date = dateInput.value;
+  const time = timeInput.value;
+
+  if (!task || !date || !time) {
+    alert("Please fill all fields!");
+    return;
   }
-  
-  function displayItems() {
-    let containerElement = document.querySelector('.todo-container');
-    let newHtml = '';
-    for (let i = 0; i < todoList.length; i++) {
-      let {item, dueDate} = todoList[i];
-      newHtml += `
-        <span>${item}</span>
-        <span>${dueDate}</span>
-        <button class='btn-delete' onclick="todoList.splice(${i}, 1);
-        displayItems();">Delete</button>
-      `;
-    }
-    containerElement.innerHTML = newHtml;
-  }
+
+  const timeFormatted = formatTime12Hr(time);
+  todoList.push({ task, date, time: timeFormatted });
+
+  taskInput.value = '';
+  dateInput.value = '';
+  timeInput.value = '';
+
+  displayTodos();
+}
+
+function displayTodos() {
+  const container = document.getElementById("todo-container");
+  container.innerHTML = '';
+
+  todoList.forEach((todo, index) => {
+    const div = document.createElement("div");
+    div.className = "todo-item";
+
+    div.innerHTML = `
+      <div class="todo-text">
+        <span><strong>Task:</strong> ${todo.task}</span>
+        <span><strong>Date:</strong> ${todo.date}</span>
+        <span><strong>Time:</strong> ${todo.time}</span>
+      </div>
+      <button class="btn-delete" onclick="deleteTodo(${index})">Delete</button>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+function deleteTodo(index) {
+  todoList.splice(index, 1);
+  displayTodos();
+}
+
+function formatTime12Hr(timeStr) {
+  const [hour, minute] = timeStr.split(':');
+  const h = parseInt(hour);
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  const hour12 = h % 12 || 12;
+  return `${hour12}:${minute} ${ampm}`;
+}
