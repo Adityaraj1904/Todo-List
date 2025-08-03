@@ -1,41 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial;
-    background-color: rgb(167, 242, 242);
+  font-family: 'Segoe UI', sans-serif;
+  background: #f2f2f2;
+  padding: 20px;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.input-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  flex: 1 1 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.input-group input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.btn-add {
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  flex: 1 1 100%;
+}
+
+.btn-add:hover {
+  background-color: #218838;
+}
+
+.todo-container {
+  margin-top: 20px;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e8f0fe;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.todo-text {
+  flex: 1;
+}
+
+.todo-text span {
+  display: block;
+  font-size: 16px;
+}
+
+.btn-delete {
+  padding: 8px 12px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+@media (max-width: 600px) {
+  .input-group {
+    flex: 1 1 100%;
   }
-  
-  #main-heading {
-    text-align: center;
-  }
-  
-  .grid-container {
-    display: grid;
-    grid-template-columns: 200px 150px 100px;
-    column-gap: 10px;
-    row-gap: 10px;
+
+  .btn-add {
     margin-top: 10px;
-    align-items: center;
-    justify-content: center;   
   }
-  
-  #todo-input, #todo-date {
-    font-size: 15px;
-    padding: 10px 5px;
-  }
-  
-  .btn-delete {
-    background-color: rgb(87, 4, 4);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 15px 0px;
-    cursor: pointer;
-  }
-  
-  .btn-todo {
-    background-color: rgb(5, 119, 19);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 15px 0px;
-    cursor: pointer;
-  }
+}
